@@ -6,11 +6,13 @@ public class Persoon {
     private final String naam;
     private double budget;
     private final ArrayList<Game> mijnGames;
+    private final ArrayList<Game> nogNietInBezit;
 
     public Persoon(String nm, double bud){
         this.naam = nm;
         this.budget = bud;
         mijnGames = new ArrayList<Game>();
+        nogNietInBezit = new ArrayList<Game>();
     }
 
     public double getBudget() {
@@ -48,6 +50,17 @@ public class Persoon {
             }
         }
         return false;
+    }
+
+    public ArrayList bepaalGamesNietInBezit(ArrayList<Game> teKoop){
+        for (Game spelletje:teKoop){
+            for (Game gimma:mijnGames){
+                if (!spelletje.equals(gimma)){
+                    nogNietInBezit.add(spelletje);
+                }
+            }
+        }
+        return nogNietInBezit;
     }
 
     public String toString(){
